@@ -17,4 +17,10 @@ const multiply = function (a, b) {
 
 const divide = function (a, b) {
     return a / b;
-}
+};
+
+// Function to display the result
+const display = function (result) {
+    let display = document.querySelector('.display');
+    display.textContent = result
+};
