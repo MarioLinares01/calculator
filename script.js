@@ -55,7 +55,6 @@ const operate = function(num1, num2, operator) {
 
 const appendNumber = function (num) {
     if (num1 === '') {
-        // Handles first number input
         if (displayValue === '0' || displayValue === 0) {
             displayValue = num;
         } else if (displayValue === num1) {
@@ -77,20 +76,44 @@ const appendNumber = function (num) {
     updateDisplay(displayValue);
 }
 
+const handleOperator = function (op) {
+    if (op1 != '' && op2 === '') {
+        op2 = op;
+        num2 = displayValue;
+        result = operate(Number(num1), Number(num2), op1);
+        displayValue = result
+        num1 = displayValue
+        updateDisplay(result)
+        result = '';
+    } else if (op1 != '' && op2 != '') {
+        num2 = displayValue;
+        result = operate(Number(num1), Number(num2), op2);
+        op2 = op;
+        displayValue = result
+        num1 = displayValue;
+        result = ''
+        updateDisplay(displayValue);
+    } else {
+        op1 = op;
+        num1 = displayValue;
+    }
+}
+
 // Event listeners
 numbers.forEach(btn => btn.addEventListener('click', (e) => {
-    // inputNumber(e.target.textContent)
     appendNumber(e.target.textContent);
 }));
 
 operators.forEach(btn => btn.addEventListener('click', (e) => {
-    console.log(e.target.textContent);
+    handleOperator(e.target.textContent);
 }));
 
 clear.addEventListener('click', () => {
     num1 = '';
     num2 = '';
-    displayValue = '0';
+    op1 = '';
+    op2 = '';
     result = '';
+    displayValue = '0';
     updateDisplay(displayValue);
 });
