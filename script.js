@@ -160,7 +160,7 @@ equal.addEventListener('click', () => {
         result = operate(Number(num1), Number(num2), op1);
         displayValue = result;
         updateDisplay(displayValue);
-        um1 = displayValue;
+        num1 = displayValue;
         num2 = '';
         op1 = '';
         op2 = '';
