@@ -4,6 +4,12 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
 
+let num1 = '';
+let num2 = '';
+let op1 = '';
+let op2 = '';
+let result = '';
+let displayValue = display.textContent;
 
 // Additon function
 const add = function (a, b) {
@@ -46,3 +52,45 @@ const operate = function(num1, num2, operator) {
         return divide(num1, num2);
     }
 }
+
+const appendNumber = function (num) {
+    if (num1 === '') {
+        // Handles first number input
+        if (displayValue === '0' || displayValue === 0) {
+            displayValue = num;
+        } else if (displayValue === num1) {
+            displayValue = num;
+        } else {
+            if (displayValue.length < 9) {
+                displayValue += num
+            }
+        }
+    } else {
+        if (displayValue === num1) {
+            displayValue = num
+        } else {
+            if (displayValue.length < 9) {
+                displayValue += num
+            }
+        }
+    }
+    updateDisplay(displayValue);
+}
+
+// Event listeners
+numbers.forEach(btn => btn.addEventListener('click', (e) => {
+    // inputNumber(e.target.textContent)
+    appendNumber(e.target.textContent);
+}));
+
+operators.forEach(btn => btn.addEventListener('click', (e) => {
+    console.log(e.target.textContent);
+}));
+
+clear.addEventListener('click', () => {
+    num1 = '';
+    num2 = '';
+    displayValue = '0';
+    result = '';
+    updateDisplay(displayValue);
+});
