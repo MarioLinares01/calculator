@@ -36,16 +36,23 @@ const modulo = function (a, b) {
     return a % b;
 }
 
-// Function to display the result
+// Display the results
 const updateDisplay = function (result) {
     display.textContent = result
 };
 
-// Clear Display
+// Clear the display
 const clearDisplay = function () {
-    display.textContent = '';
+    num1 = '';
+    num2 = '';
+    op1 = '';
+    op2 = '';
+    result = '';
+    displayValue = '0';
+    updateDisplay(displayValue);
 }
 
+// Handle math operations
 const operate = function(num1, num2, operator) {
     if (operator === '+') {
         return add(num1, num2);
@@ -60,6 +67,7 @@ const operate = function(num1, num2, operator) {
     }
 }
 
+// Append number to the display
 const appendNumber = function (num) {
     if (num1 === '') {
         if (displayValue === '0' || displayValue === 0) {
@@ -83,6 +91,7 @@ const appendNumber = function (num) {
     updateDisplay(displayValue);
 }
 
+// Handle the operators
 const handleOperator = function (op) {
     if (op1 != '' && op2 === '') {
         op2 = op;
@@ -116,13 +125,7 @@ operators.forEach(btn => btn.addEventListener('click', (e) => {
 }));
 
 clear.addEventListener('click', () => {
-    num1 = '';
-    num2 = '';
-    op1 = '';
-    op2 = '';
-    result = '';
-    displayValue = '0';
-    updateDisplay(displayValue);
+    clearDisplay();
 });
 
 sign.addEventListener('click', () => {
@@ -131,5 +134,31 @@ sign.addEventListener('click', () => {
     } else {
         displayValue = Number(displayValue) * -1;
         updateDisplay(displayValue);
+    }
+});
+
+equal.addEventListener('click', () => {
+    if (op1 === '') {
+        return;
+    } else if (op2 != '') {
+        num2 = displayValue;
+        result = operate(Number(num1), Number(num2), op2)
+        displayValue = result;
+        updateDisplay(displayValue);
+        num1 = displayValue;
+        num2 = '';
+        op1 = '';
+        op2 = '';
+        result = '';
+    } else {
+        num2 = displayValue;
+        result = operate(Number(num1), Number(num2), op1);
+        displayValue = result;
+        updateDisplay(displayValue);
+        um1 = displayValue;
+        num2 = '';
+        op1 = '';
+        op2 = '';
+        result = '';
     }
 });
