@@ -117,11 +117,7 @@ const handleOperator = function (op) {
 
 // Round the results
 const round = function (result) {
-    if (Number(result) % 1 === 0) {
-        return;
-    } else {
-        return parseFloat(Number(result).toFixed(3));
-    }
+    return parseFloat(Number(result).toFixed(3));
 }
 
 // Event listeners
