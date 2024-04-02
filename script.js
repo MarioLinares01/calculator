@@ -55,15 +55,15 @@ const clearDisplay = function () {
 // Handle math operations
 const operate = function(num1, num2, operator) {
     if (operator === '+') {
-        return add(num1, num2);
+        return round(add(num1, num2));
     } else if (operator === '-') {
-        return subtract(num1, num2);
+        return round(subtract(num1, num2));
     } else if (operator === '*') {
-        return multiply(num1, num2);
+        return round(multiply(num1, num2));
     } else if (operator === '/') {
-        return divide(num1, num2);
+        return round(divide(num1, num2));
     } else if (operator === '%') {
-        return modulo(num1, num2)
+        return round(modulo(num1, num2));
     }
 }
 
@@ -112,6 +112,15 @@ const handleOperator = function (op) {
     } else {
         op1 = op;
         num1 = displayValue;
+    }
+}
+
+// Round the results
+const round = function (result) {
+    if (Number(result) % 1 === 0) {
+        return;
+    } else {
+        return parseFloat(Number(result).toFixed(3));
     }
 }
 
