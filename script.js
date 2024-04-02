@@ -3,6 +3,7 @@ const clear = document.querySelector('.clear');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
+const sign = document.querySelector('.sign');
 
 let num1 = '';
 let num2 = '';
@@ -122,4 +123,13 @@ clear.addEventListener('click', () => {
     result = '';
     displayValue = '0';
     updateDisplay(displayValue);
+});
+
+sign.addEventListener('click', () => {
+    if (displayValue === '0' || displayValue === 0) {
+        return;
+    } else {
+        displayValue = Number(displayValue) * -1;
+        updateDisplay(displayValue);
+    }
 });
