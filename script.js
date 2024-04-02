@@ -31,6 +31,10 @@ const divide = function (a, b) {
     return a / b;
 };
 
+const modulo = function (a, b) {
+    return a % b;
+}
+
 // Function to display the result
 const updateDisplay = function (result) {
     display.textContent = result
@@ -50,6 +54,8 @@ const operate = function(num1, num2, operator) {
         return multiply(num1, num2);
     } else if (operator === '/') {
         return divide(num1, num2);
+    } else if (operator === '%') {
+        return modulo(num1, num2)
     }
 }
 
